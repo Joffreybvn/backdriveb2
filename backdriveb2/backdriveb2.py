@@ -1,6 +1,7 @@
 
 import webview
 from . import Api
+from .b2 import AccountHandler
 
 
 class Application:
@@ -11,4 +12,5 @@ class Application:
 
     @staticmethod
     def start():
-        webview.start()
+        AccountHandler()
+        # webview.start(debug=True)

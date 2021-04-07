@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BackDrive B2</title>
+
     <link rel="stylesheet" href="./css/pure-min.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/file-card.css">
@@ -22,8 +23,8 @@
 
             <div class="pure-menu">
                 <ul class="pure-menu-list">
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Accounts</a></li>
-                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Settings</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link" id="nav_accounts_tab">Accounts</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link" id="nav_settings_tab">Settings</a></li>
                     <li class="pure-menu-heading">Buckets</li>
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="bucket-icon"></span>Personal</a></li>
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link"><span class="bucket-icon"></span>Work</a></li>
@@ -31,11 +32,11 @@
                 </ul>
             </div>
 
-            <button class="pure-button upload-button">Upload <img src="./images/file-upload.svg" height="20px" width="20px"/></button>
+            <button class="pure-button upload-button" id="upload-button">Upload <img src="./images/file-upload.svg" height="20px" width="20px"/></button>
         </div>
     </div>
 
-    <div id="list" class="pure-u-1">
+    <div id="main_content" class="pure-u-1">
 
         <div class="courses-container">
             <div class="course">
@@ -92,9 +93,10 @@
             </div>
         </div>
 
+        <div data-include="./includes/file.html"></div>
     </div>
 
-    <div id="main" class="pure-u-1">
+    <div id="side_content" class="pure-u-1">
         <div class="email-content">
             <div class="email-content-header pure-g">
                 <div class="pure-u-1-2">
@@ -113,6 +115,9 @@
         </div>
     </div>
 </div>
+
+<!-- Build bundle with 'webpack' command -->
+<script type="text/javascript" src="js/bundle.js"></script>
 
 </body>
 </html>

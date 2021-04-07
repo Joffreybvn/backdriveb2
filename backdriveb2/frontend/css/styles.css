@@ -86,7 +86,7 @@ h2 .file-extension {
  * -- LAYOUT STYLES --
  * This layout consists of three main elements, `#nav` (navigation bar), `#list` (email list), and `#main` (email content). All 3 elements are within `#layout`
  */
-#layout, #nav, #list, #main {
+#layout, #nav, #main_content, #side_content {
     position: static;
     margin: 0;
     padding: 0;
@@ -254,14 +254,14 @@ h2 .file-extension {
     }
 
     /* These are position:fixed; elements that will be in the left 500px of the screen */
-    #nav, #list {
+    #nav, #main_content {
         position: fixed;
         top: 0;
         bottom: 0;
         overflow: auto;
     }
     #nav {
-        margin-left: calc(-100vw + 300px); /* "left col (nav + list)" width */
+        margin-left: calc(-100vw + 300px); /* "left col (nav + main_content)" width */
         width:150px;
         height: 100%;
     }
@@ -277,14 +277,14 @@ h2 .file-extension {
         display: none;
     }
 
-    #list {
+    #main_content {
         margin-left: calc(-100vw + 450px);
         width: calc(100vw - 450px);
         height: 100%;
         border-right: 1px solid #ddd;
     }
 
-    #main {
+    #side_content {
         position: fixed;
         top: 0;
         right: 0;
