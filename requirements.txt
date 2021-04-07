@@ -1,4 +1,5 @@
 pywebview==3.4
+b2sdk==1.5.0
 
 # Linux dependencies
 pyqt5==5.15.4

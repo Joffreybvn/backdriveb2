@@ -16,10 +16,30 @@ a {
     color: #1b98f8;
 }
 
-h1, .upload-button {
+h1, h2, .upload-button {
     font-family: 'Gilroy', serif;
     font-weight: bold;
     font-style: normal;
+}
+
+h6 {
+    font-family: 'Gilroy', serif;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 0.75em;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+h2 {
+    color: #000119;
+    font-size: 1.1em;
+    margin: 0;
+    letter-spacing: .6px;
+}
+
+h2 .file-extension {
+    opacity: 0.4;
 }
 
 
@@ -67,6 +87,7 @@ h1, .upload-button {
  * This layout consists of three main elements, `#nav` (navigation bar), `#list` (email list), and `#main` (email content). All 3 elements are within `#layout`
  */
 #layout, #nav, #list, #main {
+    position: static;
     margin: 0;
     padding: 0;
 }
@@ -184,6 +205,7 @@ h1, .upload-button {
 /* Email Content Styles */
 .email-content-header, .email-content-body, .email-content-footer {
     padding: 1em 2em;
+    font-size: 0.9em;
 }
     .email-content-header {
         border-bottom: 1px solid #ddd;
@@ -227,7 +249,7 @@ h1, .upload-button {
 
     /* Move the layout over so we can fit the nav + list in on the left */
     #layout {
-        padding-left:500px; /* "left col (nav + list)" width */
+        padding-left: calc(100vw - 300px);
         position: relative;
     }
 
@@ -239,7 +261,7 @@ h1, .upload-button {
         overflow: auto;
     }
     #nav {
-        margin-left:-500px; /* "left col (nav + list)" width */
+        margin-left: calc(-100vw + 300px); /* "left col (nav + list)" width */
         width:150px;
         height: 100%;
     }
@@ -256,43 +278,19 @@ h1, .upload-button {
     }
 
     #list {
-        margin-left: -350px;
-        width: 100%;
-        height: 33%;
-        border-bottom: 1px solid #ddd;
-    }
-
-    #main {
-        position: fixed;
-        top: 33%;
-        right: 0;
-        bottom: 0;
-        left: 150px;
-        overflow: auto;
-        width: auto; /* so that it's not 100% */
-    }
-
-}
-
-/*
- * -- DESKTOP (AND UP) MEDIA QUERIES --
- * On desktops and other large-sized devices, we want to customize some
- * of the mobile styles.
- */
-@media (min-width: 60em) {
-
-    /* This will take up the entire height, and be a little thinner */
-    #list {
-        margin-left: -350px;
-        width:350px;
+        margin-left: calc(-100vw + 450px);
+        width: calc(100vw - 450px);
         height: 100%;
         border-right: 1px solid #ddd;
     }
 
-    /* This will now take up it's own column, so don't need position: fixed; */
     #main {
-        position: static;
-        margin: 0;
-        padding: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: calc(100vw - 300px);
+        overflow: auto;
+        width: auto; /* so that it's not 100% */
     }
 }

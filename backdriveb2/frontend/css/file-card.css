@@ -1,0 +1,63 @@
+
+.courses-container {
+    box-sizing: border-box;
+}
+
+.course:hover,
+.course:focus {
+    box-shadow: 0 3px 10px -2px rgba(0,0,0,0.4);
+    background-color: #fff;
+    transition: box-shadow 0.2s
+}
+
+.course {
+    cursor: pointer;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    display: flex;
+    max-width: 100%;
+    margin: 15px;
+    overflow: hidden;
+    transition: box-shadow 0.2s
+}
+
+.card-image-folder,
+.card-image-file {
+    margin: 10px 10px 10px 15px;
+    min-width: 42px;
+    width: 42px;
+    min-height: 42px;
+    height: 42px;
+    background-size: contain;
+}
+
+.card-image-folder {
+    background: url(../images/folder.svg) no-repeat center;
+}
+
+.card-image-file {
+    background: url(../images/file.svg) no-repeat center;
+}
+
+.card-download-button {
+    cursor: pointer;
+    margin: 15px 23px 10px 15px;
+    min-width: 32px;
+    width: 32px;
+    min-height: 32px;
+    height: 32px;
+    opacity: 0.4;
+    background: url(../images/download.svg) no-repeat center;
+    background-size: contain;
+}
+
+.card-download-button:hover,
+.card-download-button:focus {
+    opacity: 0.8;
+}
+
+.course-info {
+    padding: 10px;
+    position: relative;
+    width: 100%;
+}
