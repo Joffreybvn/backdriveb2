@@ -592,3 +592,4 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+/backdriveb2/frontend/js/bundle.js
