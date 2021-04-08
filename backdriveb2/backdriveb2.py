@@ -7,10 +7,9 @@ from .b2 import AccountHandler
 class Application:
 
     def __init__(self):
-        api = Api()
-        webview.create_window('BackDrive B2', 'backdriveb2/frontend/index.html', js_api=api, min_size=(1000, 600))
+        self.api = Api()
 
-    @staticmethod
-    def start():
-        AccountHandler()
-        # webview.start(debug=True)
+    def start(self):
+
+        webview.create_window('BackDrive B2', 'backdriveb2/frontend/index.html', js_api=self.api, min_size=(1000, 600))
+        webview.start(debug=True)

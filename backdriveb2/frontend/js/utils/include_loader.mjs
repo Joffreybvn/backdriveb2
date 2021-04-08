@@ -1,23 +1,27 @@
 
 let loadInclude = (parentElement, file) => {
+    return new Promise((resolve, reject) => {
 
-    let request = new XMLHttpRequest()
+        let request = new XMLHttpRequest()
 
-    // Once a response is received, append the HTML
-    request.onreadystatechange = () => {
+        // Callback: triggered when the include is loaded
+        request.onreadystatechange = () => {
 
-        if (request.readyState === 4) {
-            parentElement.innerHTML += request.responseText
+            // Append the HTML
+            if (request.readyState === 4) {
+                parentElement.innerHTML += request.responseText
+                resolve(true)
+            }
         }
-    }
 
-    // Send a request to load the include
-    try {
-        request.open("GET", file, true);
-        request.send();
-    } catch (err) {
-        console.log("Could not load the include")
-    }
+        // Load the include
+        try {
+            request.open("GET", file, true);
+            request.send();
+        } catch (err) {
+            reject(false)
+        }
+    })
 }
 
 export {

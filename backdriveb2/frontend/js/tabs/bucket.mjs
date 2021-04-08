@@ -1,8 +1,9 @@
 
 class BucketTab {
 
-    constructor() {
+    constructor() {}
 
+    display() {
         this.initEventListener()
     }
 

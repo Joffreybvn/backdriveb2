@@ -1,5 +1,4 @@
 
-from cryptography.fernet import Fernet
 import json
 from typing import List
 from . import Account
@@ -8,62 +7,71 @@ from . import Account
 class AccountHandler:
 
     def __init__(self):
-        self.credentials: dict = self._load_credentials()
-        self.accounts: List[Account] = self._load_accounts()
+        self.accounts: List[Account] = []
 
-    # Accounts
-    # -------------------------------------------------------------------------
+        self._load_accounts()
 
     def create(self, key: str, key_id: str):
         """Register a new account."""
 
-        self.accounts.append(Account(key, key_id))
-        self._save_credentials()
+        self.accounts.append(Account([key, key_id]))
+        self._save_accounts()
 
-    def update(self, index, key: str = None, key_id: str = None):
+    def update(self, index: str, key: str = None, key_id: str = None) -> bool:
         """Update the account with the given index."""
 
-        self.accounts[index].update(key, key_id)
-        self._save_credentials()
+        # Update the account
+        try:
+            self.accounts[int(index)].credentials = [key, key_id]
+            self._save_accounts()
 
-    def _load_accounts(self) -> List[Account]:
-        """Load all accounts from the credentials dictionary."""
+        # If the account doesn't exist yet, create it
+        except (IndexError, TypeError) as error:
+            self.create(key, key_id)
+
+        return True
+
+    def get_accounts(self) -> List[list]:
+        """Return a list of all accounts."""
 
         accounts = []
-
-        for account in self.credentials['accounts']:
-            accounts.append(Account(account["key"], account["key_id"]))
+        for i in range(len(self.accounts)):
+            accounts.append([i] + self.accounts[i].credentials)
 
         return accounts
 
-    # Credentials
-    # -------------------------------------------------------------------------
+    def _load_accounts(self) -> None:
+        """Load all accounts from the disk."""
 
-    def _save_credentials(self):
-        """Save credential dictionary to disk."""
-
-        with open('./credentials.json', 'w') as handler:
-            json.dump(self.credentials, handler)
-
-    def _load_credentials(self) -> dict:
-        """Load and return the credential dictionary."""
-
-        # Load the credentials from disk
+        # Load the accounts from disk
         try:
-            with open('./credentials.json') as handler:
+            with open('./accounts.json') as handler:
                 credentials = json.load(handler)
 
-        # If not exists, create a new one
+        # If not exists, create a new dictionary
         except FileNotFoundError as error:
+            print("ERROR: Could not load accounts.json. Create an empty one.")
             credentials = self._generate_credential()
 
-        return credentials
+        # Create Account objects
+        for entry in credentials["accounts"]:
+            self.accounts.append(Account(entry))
+
+    def _save_accounts(self) -> None:
+        """Save accounts to the disk"""
+
+        credentials = self._generate_credential()
+
+        # Populate the credential dictionary
+        for account in self.accounts:
+            credentials["accounts"].append(account.credentials)
+
+        # Save it to disk as JSON
+        with open('./accounts.json', 'w') as handler:
+            json.dump(credentials, handler)
 
     @staticmethod
-    def _generate_credential():
-        """Generate an new credential dictionary with a master key."""
+    def _generate_credential() -> dict:
+        """Generate an empty credential dictionary."""
 
-        return {
-            'master': Fernet.generate_key(),
-            'accounts': []
-        }
+        return {"accounts": []}
