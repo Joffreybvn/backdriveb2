@@ -298,3 +298,24 @@ h2 .file-extension {
         width: auto; /* so that it's not 100% */
     }
 }
+
+.fixed-800 {
+    width: 100%;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+
+.button-save-account {
+    background-color: #656565;
+}
+
+.black-button {
+    font-family: 'Gilroy', serif;
+    font-weight: bold;
+    background-color: #000119;
+    color: #fff;
+}
+
+.black-button:hover {
+    background-image: linear-gradient(#ffffff21, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.15));
+}

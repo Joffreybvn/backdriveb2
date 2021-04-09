@@ -13,18 +13,25 @@ class Application {
         this.settingsTab = new SettingsTab();
 
         this.initEventListener()
-
-        // Display the Accounts tab by default
-        this.accountsTab.display()
     }
 
     initEventListener() {
         navigationAccountTab.addEventListener("click", () => { this.accountsTab.display() });
         navigationSettingsTab.addEventListener("click", () => { this.settingsTab.display() });
     }
+
+    async start() {
+
+        // Display the Accounts tab and connect to BackBlaze
+        this.accountsTab.display();
+    }
+
+    createBucketTab() {
+
+    }
 }
 
 // Start the app
 window.addEventListener('pywebviewready', () => {
-    new Application()
+    new Application().start()
 })

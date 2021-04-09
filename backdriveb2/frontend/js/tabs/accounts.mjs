@@ -58,8 +58,10 @@ class AccountsTab extends Tab {
 
 class AccountCard {
 
-    constructor(index, key, keyId) {
-        this.index = index
+    constructor(name, key, keyId) {
+        this.nameElement = undefined;
+        this.id_name = randomIdGenerator();
+        this.name = name
 
         this.keyElement = undefined;
         this.id_key = randomIdGenerator();
@@ -72,7 +74,12 @@ class AccountCard {
         this.buttonElement = undefined;
         this.id_button = randomIdGenerator();
 
-        this.loadElements('account_card_key', 'account_card_key_id', 'account_card_button')
+        this.loadElements(
+            'account_card_index',
+            'account_card_key',
+            'account_card_key_id',
+            'account_card_button'
+        )
         this.changeIds()
     }
 
@@ -80,12 +87,13 @@ class AccountCard {
         // Because of DOM reset, the Card has to be reloaded to connect back to
         // its HTML components.
 
-        this.loadElements(this.id_key, this.id_keyId, this.id_button)
+        this.loadElements(this.id_name, this.id_key, this.id_keyId, this.id_button)
         this.setValues(this.value_key, this.value_keyId)
         this.initEventListener()
     }
 
-    loadElements(key, keyId, button) {
+    loadElements(index, key, keyId, button) {
+        this.indexElement = document.getElementById(index)
         this.keyElement = document.getElementById(key)
         this.keyIdElement = document.getElementById(keyId)
         this.buttonElement = document.getElementById(button)
@@ -104,19 +112,23 @@ class AccountCard {
 
     initEventListener() {
 
-        // Save the account to accounts.json
         this.buttonElement.addEventListener('click', (event) => {
-
             event.preventDefault();
-            this.setValues(this.keyElement.value, this.keyIdElement.value)
+
+            // Update the input values
+            this.value_key = this.keyElement.value;
+            this.value_keyId = this.keyIdElement.value;
+
+            // Send the account to the back-end
             this.saveAccount()
         })
     }
 
     async saveAccount() {
+        let outcome;
 
         // Send the key and keyId to the Python API
-        await pywebview.api.save_account(false, this.keyElement.value, this.keyIdElement.value)
+        [outcome, this.name] = await pywebview.api.save_account(this.name || false, this.keyElement.value, this.keyIdElement.value)
     }
 }
 

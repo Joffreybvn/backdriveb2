@@ -1,7 +1,6 @@
 
 import webview
 from . import Api
-from .b2 import AccountHandler
 
 
 class Application:
