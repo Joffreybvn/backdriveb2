@@ -11,19 +11,36 @@ class Application {
     constructor() {
         this.accountsTab = new AccountsTab();
         this.settingsTab = new SettingsTab();
-
-        this.initEventListener()
-    }
-
-    initEventListener() {
-        navigationAccountTab.addEventListener("click", () => { this.accountsTab.display() });
-        navigationSettingsTab.addEventListener("click", () => { this.settingsTab.display() });
+        this.bucketTabs = {};
     }
 
     async start() {
 
-        // Display the Accounts tab and connect to BackBlaze
-        this.accountsTab.display();
+        // Create bucket tabs
+        await this.initBucketTabs()
+
+        // Initialize the navbar event listener
+        this.initNavbarEventListener()
+
+        // Display the account tab by default
+        await this.accountsTab.display();
+    }
+
+    async initBucketTabs() {
+        let bucket_names = await pywebview.api.get_buckets()
+
+        for (let bucket of bucket_names) {
+            this.bucketTabs[bucket] = new BucketTab(bucket)
+        }
+    }
+
+    initNavbarEventListener() {
+        navigationAccountTab.addEventListener("click", () => { this.accountsTab.display() });
+        navigationSettingsTab.addEventListener("click", () => { this.settingsTab.display() });
+
+        for (let bucket_name in this.bucketTabs) {
+            // this.bucketTabs[bucket_name].addEventListener("click", () => { this.bucketTabs[bucket_name].display() })
+        }
     }
 
     createBucketTab() {
@@ -32,6 +49,6 @@ class Application {
 }
 
 // Start the app
-window.addEventListener('pywebviewready', () => {
-    new Application().start()
+window.addEventListener('pywebviewready', async () => {
+    await new Application().start()
 })

@@ -1,7 +1,15 @@
 
-class BucketTab {
+import { content_class, side_class, bucketContent, bucketSide } from "../utils/dom.mjs"
+import { Tab } from "./tab.mjs";
 
-    constructor() {}
+
+class BucketTab extends Tab{
+
+    constructor(name) {
+        super(bucketContent, bucketSide);
+
+        this.name = name
+    }
 
     display() {
         this.initEventListener()

@@ -1,4 +1,5 @@
 
+from b2sdk.v1 import Bucket as B2Bucket
 import uuid
 import json
 from typing import List, Dict, Tuple
@@ -41,6 +42,15 @@ class AccountsHandler:
             accounts.append([account.name] + account.credentials)
 
         return accounts
+
+    def get_buckets(self) -> List[B2Bucket]:
+        """Return a list of all buckets of all accounts."""
+
+        buckets = []
+        for account in self.accounts.values():
+            buckets += account.buckets
+
+        return buckets
 
     # Account connection
     # -------------------------------------------------------------------------

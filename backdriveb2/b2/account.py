@@ -1,7 +1,9 @@
 
-from b2sdk.v1 import InMemoryAccountInfo, B2Api, Bucket
+from b2sdk.v1 import InMemoryAccountInfo, B2Api
+from b2sdk.v1 import Bucket as B2Bucket
 from b2sdk.exception import InvalidAuthToken
 from typing import List
+
 info = InMemoryAccountInfo()
 
 
@@ -26,8 +28,9 @@ class Account:
 
         return self.connected
 
-    def list_bucket(self) -> List[Bucket]:
-        """Return a list of all Bucket accessible by this account."""
+    @property
+    def buckets(self) -> List[B2Bucket]:
+        """Return a list of all bucket accessible by this account."""
 
         if self.connected:
             return self.api.list_buckets()
