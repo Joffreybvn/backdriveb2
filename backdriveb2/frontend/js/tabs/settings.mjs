@@ -12,8 +12,8 @@ class SettingsTab extends Tab {
     display() {
         super.display();
 
-        if (!this.hasShowed) {
-            this.hasShowed = true
+        if (!this.isLoaded) {
+            this.isLoaded = true
         }
     }
 }

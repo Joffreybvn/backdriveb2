@@ -17,7 +17,7 @@ class Application {
     async start() {
 
         // Create bucket tabs
-        await this.initBucketTabs()
+        // await this.initBucketTabs()
 
         // Initialize the navbar event listener
         this.initNavbarEventListener()
@@ -38,9 +38,9 @@ class Application {
         navigationAccountTab.addEventListener("click", () => { this.accountsTab.display() });
         navigationSettingsTab.addEventListener("click", () => { this.settingsTab.display() });
 
-        for (let bucket_name in this.bucketTabs) {
+        //for (let bucket_name in this.bucketTabs) {
             // this.bucketTabs[bucket_name].addEventListener("click", () => { this.bucketTabs[bucket_name].display() })
-        }
+        //}
     }
 
     createBucketTab() {

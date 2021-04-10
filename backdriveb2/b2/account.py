@@ -35,6 +35,8 @@ class Account:
         if self.connected:
             return self.api.list_buckets()
 
+        return []
+
     @property
     def credentials(self) -> list:
         """Return a list with the key and key_id."""

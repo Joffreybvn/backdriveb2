@@ -1,7 +1,7 @@
 
 import { content_class, side_class, accountsContent, accountsSide } from "../utils/dom.mjs"
-import { loadInclude } from "../utils/include_loader.mjs";
 import { Tab } from "./tab.mjs";
+import { includeLoader } from "../includes/include_loader.mjs";
 
 
 class AccountsTab extends Tab {
@@ -15,17 +15,9 @@ class AccountsTab extends Tab {
         super.display();
 
         if (!this.isLoaded) {
+            this.isLoaded = true;
+
             await this.loadAccountCards()
-
-            this.isLoaded = true
-        }
-
-        this.reload();
-    }
-
-    reload() {
-        for (const card of this.cards) {
-            card.reload()
         }
     }
 
@@ -36,105 +28,59 @@ class AccountsTab extends Tab {
 
         // If no account exist, display an empty card
         if (accounts.length === 0) {
-            await this.createAccountCard()
-        }
+            this.cards.push(new AccountsCard(this.content))
 
         // Otherwise, display card filled with credentials
-        else {
-            for (const entry of accounts) {
-                await this.createAccountCard(entry[1], entry[2], entry[0])
+        } else {
+            for (const values of accounts) {
+                this.cards.push(new AccountsCard(this.content, values[0], values[1], values[2]))
             }
         }
     }
-
-    async createAccountCard(keyValue = "", keyIdValue = "", index) {
-
-        // Create an account card
-        await loadInclude(this.content, "./includes/accounts/account.html")
-        this.cards.push(new AccountCard(index, keyValue, keyIdValue))
-    }
 }
 
+class AccountsCard {
 
-class AccountCard {
+    constructor(parent, name = undefined, key = "", keyId = "") {
 
-    constructor(name, key, keyId) {
-        this.nameElement = undefined;
-        this.id_name = randomIdGenerator();
         this.name = name
 
-        this.keyElement = undefined;
-        this.id_key = randomIdGenerator();
-        this.value_key = key;
+        // Generate a new random name it's not provided
+        if (name === undefined) {
+            this.name = includeLoader.randomIdGenerator()
+        }
 
-        this.keyIdElement = undefined;
-        this.id_keyId = randomIdGenerator();
-        this.value_keyId = keyId;
+        // Load the HTML include
+        this.key = this.keyId = this.saveButton = undefined;
+        [this.key, this.keyId, this.saveButton] = includeLoader.loadAccountCard(parent)
 
-        this.buttonElement = undefined;
-        this.id_button = randomIdGenerator();
-
-        this.loadElements(
-            'account_card_index',
-            'account_card_key',
-            'account_card_key_id',
-            'account_card_button'
-        )
-        this.changeIds()
-    }
-
-    reload() {
-        // Because of DOM reset, the Card has to be reloaded to connect back to
-        // its HTML components.
-
-        this.loadElements(this.id_name, this.id_key, this.id_keyId, this.id_button)
-        this.setValues(this.value_key, this.value_keyId)
+        // Insert values
+        this.setValues(key, keyId)
         this.initEventListener()
     }
 
-    loadElements(index, key, keyId, button) {
-        this.indexElement = document.getElementById(index)
-        this.keyElement = document.getElementById(key)
-        this.keyIdElement = document.getElementById(keyId)
-        this.buttonElement = document.getElementById(button)
-    }
-
-    changeIds() {
-        this.keyElement.id = this.id_key;
-        this.keyIdElement.id = this.id_keyId;
-        this.buttonElement.id = this.id_button;
-    }
-
     setValues(key, keyId) {
-        this.keyElement.value = key;
-        this.keyIdElement.value = keyId;
+        this.key.value = key;
+        this.keyId.value = keyId;
     }
 
     initEventListener() {
 
-        this.buttonElement.addEventListener('click', (event) => {
+        this.saveButton.addEventListener('click', async (event) => {
             event.preventDefault();
-
-            // Update the input values
-            this.value_key = this.keyElement.value;
-            this.value_keyId = this.keyIdElement.value;
-
-            // Send the account to the back-end
-            this.saveAccount()
+            await this.saveAccount()
         })
     }
 
     async saveAccount() {
-        let outcome;
 
         // Send the key and keyId to the Python API
-        [outcome, this.name] = await pywebview.api.save_account(this.name || false, this.keyElement.value, this.keyIdElement.value)
+        let outcome;
+        [outcome, this.name] = await pywebview.api.save_account(this.name, this.key.value, this.keyId.value)
+
+        return outcome
     }
 }
 
-
-let randomIdGenerator = () => {
-    return Date.now().toString(36) + Math.random().toString(36).substring(2);
-}
 
 export { AccountsTab }
