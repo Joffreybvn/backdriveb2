@@ -4,8 +4,11 @@
 
 import { bucketNav } from "./navbar/bucket_nav.html.mjs";
 import { accountCard } from "./accounts/account_card.html.mjs";
+import { bucketTab } from "./bucket/tab.html.mjs";
+import { bucketSide } from "./bucket/side.html.mjs";
 import { fileCard } from "./bucket/file_card.html.mjs";
 import { folderCard } from "./bucket/folder_card.html.mjs";
+
 
 class IncludeLoader {
 
@@ -28,6 +31,23 @@ class IncludeLoader {
         // Return DOM element
         return [
             document.getElementById(id_bucket)
+        ]
+    }
+
+    loadBucketTabAndSide(parent) {
+
+        // Generate ids
+        let id_tab = this.randomIdGenerator();
+        let id_side = this.randomIdGenerator();
+
+        // Load and include
+        parent.insertAdjacentHTML('beforeend', bucketTab(id_tab));
+        parent.insertAdjacentHTML('beforeend', bucketSide(id_side));
+
+        // Return DOM elements
+        return [
+            document.getElementById(id_tab),
+            document.getElementById(id_side)
         ]
     }
 
