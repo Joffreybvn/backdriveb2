@@ -5,10 +5,11 @@ import { Tab } from "./tab.mjs";
 
 class BucketTab extends Tab{
 
-    constructor(name) {
+    constructor(name, navigation) {
         super(bucketContent, bucketSide);
 
-        this.name = name
+        this.nav = navigation;
+        this.name = name;
     }
 
     display() {

@@ -1,5 +1,6 @@
 
 // Navigation menu
+const navBar = document.getElementById("navbar")
 const navigationAccountTab = document.getElementById("nav_accounts_tab")
 const navigationSettingsTab = document.getElementById("nav_settings_tab")
 
@@ -16,6 +17,7 @@ const settingsSide = document.getElementById("settings_side")
 const bucketSide = document.getElementById("bucket_side")
 
 export {
+    navBar,
     navigationAccountTab,
     navigationSettingsTab,
 
