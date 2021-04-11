@@ -1,5 +1,5 @@
 
-import { content_class, side_class, accountsContent, accountsSide } from "../utils/dom.mjs"
+import { navigationAccountTab, accountsContent, accountsSide } from "../utils/dom.mjs"
 import { Tab } from "./tab.mjs";
 import { includeLoader } from "../includes/include_loader.mjs";
 
@@ -7,18 +7,17 @@ import { includeLoader } from "../includes/include_loader.mjs";
 class AccountsTab extends Tab {
 
     constructor() {
-        super(accountsContent, accountsSide);
+        super(accountsContent, accountsSide, navigationAccountTab);
         this.cards = []
     }
 
     async display() {
         super.display();
+    }
 
-        if (!this.isLoaded) {
-            this.isLoaded = true;
-
-            await this.loadAccountCards()
-        }
+    async load() {
+        super.load();
+        await this.loadAccountCards()
     }
 
     async loadAccountCards() {

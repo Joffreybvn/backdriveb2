@@ -16,8 +16,13 @@ class BucketsHandler:
 
         return list(self.buckets.keys())
 
+    def get_files(self, bucket_name: str, folder: str = "", reload: bool = False):
+        """Return the file list for the given bucket name."""
+
+        return self.buckets[bucket_name].get_files(folder, reload)
+
     def _load_buckets(self, buckets: List[B2Bucket]):
         """Create the bucket object."""
 
         for bucket in buckets:
-            self.buckets[bucket.name] = bucket
+            self.buckets[bucket.name] = Bucket(bucket)

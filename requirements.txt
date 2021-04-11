@@ -1,5 +1,6 @@
 pywebview==3.4
 b2sdk==1.5.0
+wcmatch==8.1.2
 
 # Linux dependencies
 pyqt5==5.15.4

@@ -1,20 +1,16 @@
 
-import {content_class, side_class, settingsContent, settingsSide} from "../utils/dom.mjs"
+import { navigationSettingsTab, settingsContent, settingsSide } from "../utils/dom.mjs"
 import { Tab } from "./tab.mjs";
 
 
 class SettingsTab extends Tab {
 
     constructor() {
-        super(settingsContent, settingsSide);
+        super(settingsContent, settingsSide, navigationSettingsTab);
     }
 
     display() {
         super.display();
-
-        if (!this.isLoaded) {
-            this.isLoaded = true
-        }
     }
 }
 
