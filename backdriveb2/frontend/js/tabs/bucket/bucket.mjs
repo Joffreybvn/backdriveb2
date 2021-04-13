@@ -9,12 +9,12 @@ import { FolderCard } from "./folder.mjs";
 
 class BucketTab extends Tab {
 
-    constructor(name, navigation) {
+    constructor(name, navigation, displayTabCallback) {
 
         // Create and load the HTML elements
         let bucketContent, bucketSide;
         [bucketContent, bucketSide] = includeLoader.loadBucketTabAndSide(layout)
-        super(bucketContent, bucketSide, navigation);
+        super(bucketContent, bucketSide, navigation, displayTabCallback);
 
         this.name = name;
         this.explorers = {}
@@ -33,6 +33,7 @@ class BucketTab extends Tab {
 
         // Display the explorer corresponding to the current folder
         this.explorers[this.current_folder].display()
+        this.displayTabCallback(this.name)
     }
 
     onFolderClickCallback(bucketTab) {
@@ -42,6 +43,10 @@ class BucketTab extends Tab {
             self.current_folder = folder_name;
             self.display()
         }
+    }
+
+    async uploadFile() {
+        await pywebview.api.upload_file(this.name, this.current_folder)
     }
 }
 
@@ -91,8 +96,15 @@ class FileExplorer extends DisplayableContent {
         this.previousButton.addEventListener("click", (event) => {
             event.preventDefault()
 
-            let folderName = name.substr(0, this.folder_name.length - 1)
-            this.onFolderClickCallback(folderName.substring(0, folderName.lastIndexOf('/')))
+            let currentFolderName = this.folder_name.substr(0, this.folder_name.length - 1)
+            let previousFolderName = currentFolderName.substring(0, currentFolderName.lastIndexOf('/'))
+
+            // Add backslash when the previous folder is not root
+            if (previousFolderName !== ""){
+                previousFolderName += '/'
+            }
+
+            this.onFolderClickCallback(previousFolderName)
         })
     }
 }

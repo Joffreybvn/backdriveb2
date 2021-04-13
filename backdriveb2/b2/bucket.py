@@ -1,4 +1,5 @@
 
+import os
 from pathlib import Path
 from b2sdk.v1 import FileVersionInfo, DownloadDestLocalFile
 from b2sdk.v1 import Bucket as B2Bucket
@@ -16,8 +17,14 @@ class Bucket:
     def download_file(self, file_name: str):
         """Download a given file name to the download folder."""
 
-        destination = DownloadDestLocalFile(self.download_path + '/' + file_name)
+        destination = DownloadDestLocalFile(f"{self.download_path}/{self.files[file_name].small_name}")
         self.b2_bucket.download_file_by_name(file_name, destination)
+
+    def upload_file(self, local_file_path: str, bucket_directory: str):
+
+        file_name = os.path.basename(local_file_path)
+        remote_file_path = bucket_directory + file_name
+        self.b2_bucket.upload_local_file(local_file_path, remote_file_path)
 
     def get_files(self, folder: str = "", reload: bool = False):
         """Return the files and folder in a given folder."""

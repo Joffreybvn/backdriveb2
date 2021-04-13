@@ -1,6 +1,6 @@
 
 import { TreeElement } from "./tree_element.mjs";
-import {includeLoader} from "../../includes/include_loader.mjs";
+import { includeLoader } from "../../includes/include_loader.mjs";
 
 
 class FileCard extends TreeElement {

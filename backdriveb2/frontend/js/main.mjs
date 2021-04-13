@@ -4,22 +4,25 @@ import { BucketTab } from "./tabs/bucket/bucket.mjs";
 import { SettingsTab } from "./tabs/settings.mjs";
 
 // DOM
-import { navBar } from "./utils/dom.mjs";
+import { navBar, uploadButton, uploadInput } from "./utils/dom.mjs";
 import { includeLoader } from "./includes/include_loader.mjs";
 
 
 class Application {
 
     constructor() {
-        this.accountsTab = new AccountsTab();
-        this.settingsTab = new SettingsTab();
+        this.accountsTab = new AccountsTab(this.displayTabCallback(this));
+        this.settingsTab = new SettingsTab(this.displayTabCallback(this));
+
         this.bucketTabs = {};
+        this.displayedBucket = undefined;
     }
 
     async start() {
 
         // Create bucket tabs
         await this.createBucketTabs()
+        this.initEventListeners()
 
         // Display the account tab by default
         await this.accountsTab.display();
@@ -33,7 +36,26 @@ class Application {
 
             let navigation;
             [navigation] = includeLoader.loadBucketNav(navBar, name)
-            this.bucketTabs[name] = new BucketTab(name, navigation)
+            this.bucketTabs[name] = new BucketTab(name, navigation, this.displayTabCallback(this))
+        }
+    }
+
+    initEventListeners() {
+
+        // Trigger the file explorer when click on upload button
+        uploadButton.addEventListener("click", async () => {
+
+            if (this.displayedBucket) {
+                await this.bucketTabs[this.displayedBucket].uploadFile()
+            }
+        })
+    }
+
+    displayTabCallback(main) {
+        let self = main
+
+        return (bucketName) => {
+            self.displayedBucket = bucketName
         }
     }
 }

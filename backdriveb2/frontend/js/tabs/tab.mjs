@@ -5,11 +5,12 @@ import { DisplayableContent } from "./displayable_content.mjs"
 
 class Tab extends DisplayableContent {
 
-    constructor(contentElement, sideElement, navigation) {
+    constructor(contentElement, sideElement, navigation, displayTabCallback) {
         super(contentElement, content_class);
 
         this.side = sideElement;
         this.navigation = navigation
+        this.displayTabCallback = displayTabCallback;
 
         this.startEventListeners()
     }

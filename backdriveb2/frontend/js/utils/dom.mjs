@@ -3,6 +3,8 @@
 const navBar = document.getElementById("navbar")
 const navigationAccountTab = document.getElementById("nav_accounts_tab")
 const navigationSettingsTab = document.getElementById("nav_settings_tab")
+const uploadButton = document.getElementById('upload-button')
+const uploadInput = document.getElementById('upload-input')
 
 // Content panes
 const layout = document.getElementById("layout")
@@ -20,6 +22,8 @@ export {
     navBar,
     navigationAccountTab,
     navigationSettingsTab,
+    uploadButton,
+    uploadInput,
 
     layout,
     content_class,

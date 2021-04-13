@@ -6,13 +6,16 @@ import { includeLoader } from "../includes/include_loader.mjs";
 
 class AccountsTab extends Tab {
 
-    constructor() {
-        super(accountsContent, accountsSide, navigationAccountTab);
+    constructor(displayTabCallback) {
+        super(accountsContent, accountsSide, navigationAccountTab, displayTabCallback);
         this.cards = []
     }
 
     async display() {
         super.display();
+
+        // Set the displayed bucket to undefined
+        this.displayTabCallback(undefined)
     }
 
     async load() {
