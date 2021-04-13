@@ -22,3 +22,6 @@ class Api:
 
     def get_files_and_folders(self, bucket_name: str, folder: str = "", reload: bool = False):
         return self.buckets.get_files(bucket_name, folder, reload)
+
+    def download_file(self, bucket_name: str, file_name: str):
+        return self.buckets.download_file(bucket_name, file_name)

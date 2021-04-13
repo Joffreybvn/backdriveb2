@@ -5,8 +5,8 @@ import {includeLoader} from "../../includes/include_loader.mjs";
 
 class FileCard extends TreeElement {
 
-    constructor(parent, id, name, small_name, extension, size, content_type) {
-        super(id, name, small_name);
+    constructor(parent, bucket_name, id, name, small_name, extension, size, content_type) {
+        super(parent, bucket_name, id, name, small_name);
 
         this.extension = extension;
         this.size = size;
@@ -20,7 +20,9 @@ class FileCard extends TreeElement {
     }
 
     initEventListener() {
-        //this.downloadButton.addEventListener("click", () => {})
+        this.downloadButton.addEventListener("click", async () => {
+            await pywebview.api.download_file(this.bucket_name, this.name)
+        })
     }
 }
 

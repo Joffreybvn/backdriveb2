@@ -74,12 +74,12 @@ class FileExplorer extends DisplayableContent {
 
         // Create files
         for (let file of files) {
-            this.files[file[1]] = new FileCard(this.HTMLContent, file[0], file[1], file[2], file[3], file[4], file[5])
+            this.files[file[1]] = new FileCard(this.HTMLContent, this.bucket_name, file[0], file[1], file[2], file[3], file[4], file[5])
         }
 
         // Create folders
         for (let folder of folders) {
-            this.folders[folder[1]] = new FolderCard(this.HTMLContent, folder[0], folder[1], folder[2], this.onFolderClickCallback)
+            this.folders[folder[1]] = new FolderCard(this.HTMLContent, this.bucket_name, folder[0], folder[1], folder[2], this.onFolderClickCallback)
         }
 
         this.initEventListeners()

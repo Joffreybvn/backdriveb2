@@ -21,6 +21,9 @@ class BucketsHandler:
 
         return self.buckets[bucket_name].get_files(folder, reload)
 
+    def download_file(self, bucket_name: str, file_name: str):
+        self.buckets[bucket_name].download_file(file_name)
+
     def _load_buckets(self, buckets: List[B2Bucket]):
         """Create the bucket object."""
 

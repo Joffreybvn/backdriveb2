@@ -1,5 +1,6 @@
 
-from b2sdk.v1 import FileVersionInfo
+from pathlib import Path
+from b2sdk.v1 import FileVersionInfo, DownloadDestLocalFile
 from b2sdk.v1 import Bucket as B2Bucket
 from typing import Tuple, Iterable, List, Dict, Union
 from wcmatch.fnmatch import fnmatch
@@ -9,7 +10,14 @@ class Bucket:
 
     def __init__(self, bucket: B2Bucket):
         self.b2_bucket = bucket
+        self.download_path = str(Path.home() / "Downloads")
         self.files: Dict[str, Union[File, Folder]] = None
+
+    def download_file(self, file_name: str):
+        """Download a given file name to the download folder."""
+
+        destination = DownloadDestLocalFile(self.download_path + '/' + file_name)
+        self.b2_bucket.download_file_by_name(file_name, destination)
 
     def get_files(self, folder: str = "", reload: bool = False):
         """Return the files and folder in a given folder."""

@@ -5,7 +5,7 @@ import {includeLoader} from "../../includes/include_loader.mjs";
 
 class FolderCard extends TreeElement {
 
-    constructor(parent, id, name, small_name, onFolderClickCallback) {
+    constructor(parent, bucket_name, id, name, small_name, onFolderClickCallback) {
         super(parent, id, name, small_name);
 
         // Load the HTML include
