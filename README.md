@@ -4,7 +4,7 @@
   BackDrive B2
 </h1>
 
-<p align="center">Main repository of <b>BackDrive B2</b>, a cross-platform user-friendly client for [BackBlaze B2 storage](). It works on Windows, MacOS, and Linux.</p>
+<p align="center"<b>BackDrive B2</b> is a cross-platform user-friendly client for <a href="https://www.backblaze.com/b2/cloud-storage.html">BackBlaze B2 storage</a>.<br /> It runs on Windows, MacOS, and Linux.</p>
 
 
 ![BackDrive B2](./docs/images/screenshots/screenshot_bucket.png?raw=true "BackDrive B2")
