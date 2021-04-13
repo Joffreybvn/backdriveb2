@@ -1,7 +1,7 @@
 
 import webview
 from typing import List, Tuple
-from .b2 import AccountsHandler, BucketsHandler
+from b2 import AccountsHandler, BucketsHandler
 
 
 class Api:

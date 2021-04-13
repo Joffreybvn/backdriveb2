@@ -1,0 +1,22 @@
+name: backdriveb2
+version: 0.1.12
+base: core18
+
+summary: Cross-platform user-friendly client for BackBlaze B2 storage
+description: |
+  BackDrive B2 is a cross-platform user-friendly client for BackBlaze B2 storage.
+
+confinement: devmode
+grade: stable
+
+architectures:
+  - build-on: amd64
+
+parts:
+  backdriveb2:
+    plugin: python
+    source: ../../
+
+apps:
+  backdriveb2:
+    command: bin/start.sh
