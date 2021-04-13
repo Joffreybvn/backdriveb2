@@ -1,11 +1,31 @@
-# BackDrive B2
-BackBlaze B2 open-source client for Linux and Windows
+<h1 align="center">
+  <img src="./docs/images/backblaze.svg" width="256px" height="256px" alt="BackDrive B2">
+  <br />
+  BackDrive B2
+</h1>
 
-### Linux requirements:
-```sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0 gir1.2-webkit2-4.0```
-```sudo apt install python3-pyqt5 python3-pyqt5.qtwebkit libqt5webkit5-dev ```
+<p align="center">Main repository of <b>BackDrive B2</b>, a cross-platform user-friendly client for [BackBlaze B2 storage](). It works on Windows, MacOS, and Linux.</p>
 
-NPM, NodeJS, Webpack
-$ webpack
 
-Pure CSS v2.0.5
+![BackDrive B2](./docs/images/screenshots/screenshot_bucket.png?raw=true "BackDrive B2")
+
+<p align="center">Visit the <a href="https://www.backblaze.com/">official website</a> and the <a href="https://www.backblaze.com/b2/cloud-storage.html">B2 storage</a> of BackBlaze.<br></p>
+
+## Install
+
+    sudo snap install ungoogled-chromium --edge
+
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/ungoogled-chromium)
+
+([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
+
+## Remaining tasks
+
+Feel free to report bugs and open issues on this repo. Help is also welcome to complete the following tasks.
+
+  - [x] Release a first working version
+  - [ ] Rework of UI and frontend app (HTML/CSS/Javascript part)
+  - [ ] Multiple-accounts connection
+  - [ ] Visual confirmation on file download and upload
+
