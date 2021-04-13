@@ -1,6 +1,6 @@
 
 import { AccountsTab } from "./tabs/accounts.mjs";
-import { BucketTab } from "./tabs/bucket.mjs";
+import { BucketTab } from "./tabs/bucket/bucket.mjs";
 import { SettingsTab } from "./tabs/settings.mjs";
 
 // DOM

@@ -27,12 +27,12 @@ class AccountsTab extends Tab {
 
         // If no account exist, display an empty card
         if (accounts.length === 0) {
-            this.cards.push(new AccountsCard(this.content))
+            this.cards.push(new AccountsCard(this.HTMLContent))
 
         // Otherwise, display card filled with credentials
         } else {
             for (const values of accounts) {
-                this.cards.push(new AccountsCard(this.content, values[0], values[1], values[2]))
+                this.cards.push(new AccountsCard(this.HTMLContent, values[0], values[1], values[2]))
             }
         }
     }

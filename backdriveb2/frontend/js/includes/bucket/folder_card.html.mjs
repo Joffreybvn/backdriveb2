@@ -1,15 +1,16 @@
 
-let folderCard = () => {
+let folderCard = (id_card, name) => {
     return `
 
     <div class="content-card-container">
-        <div class="content-card card-file">
+        <div id="${id_card}" class="content-card card-file">
             <div class="card-image-folder"></div>
             <div class="content-card-info">
-                <h2>Dribble Shot</h2>
-                <h6>Chapter 4</h6>
+                <!-- Remove the last character from the folder namme ("/") -->
+                <h2>${name.substr(0, name.length - 1)}</h2>
+                <h6></h6>
             </div>
-            <div class="card-download-button"></div>
+            <!-- <div class="card-download-button"></div> -->
         </div>
     </div
     `

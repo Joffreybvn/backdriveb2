@@ -285,7 +285,7 @@ h2 .file-extension {
         display: none;
     }
 
-    .main_content, .side_content {
+    .main_content, .side_content, .explorer {
         display: none;
     }
 

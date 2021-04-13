@@ -102,6 +102,7 @@ class Folder(TreeElement):
     def get_infos(self) -> Tuple:
 
         return (
+            self.id,
             self.name,
             self.small_name,
         )
@@ -133,6 +134,7 @@ class File(TreeElement):
     def get_infos(self) -> Tuple:
 
         return (
+            self.id,
             self.name,
             self.small_name,
             self.extension,

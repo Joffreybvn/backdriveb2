@@ -6,6 +6,7 @@ import { bucketNav } from "./navbar/bucket_nav.html.mjs";
 import { accountCard } from "./accounts/account_card.html.mjs";
 import { bucketTab } from "./bucket/tab.html.mjs";
 import { bucketSide } from "./bucket/side.html.mjs";
+import { fileExplorer } from "./bucket/explorer.html.mjs";
 import { fileCard } from "./bucket/file_card.html.mjs";
 import { folderCard } from "./bucket/folder_card.html.mjs";
 
@@ -51,6 +52,22 @@ class IncludeLoader {
         ]
     }
 
+    loadFileExplorer(parent) {
+
+        // Generate id
+        let id_explorer = this.randomIdGenerator();
+        let id_previous = this.randomIdGenerator();
+
+        // Load and include
+        parent.insertAdjacentHTML('beforeend', fileExplorer(id_explorer, id_previous));
+
+        // Return DOM elements
+        return [
+            document.getElementById(id_explorer),
+            document.getElementById(id_previous),
+        ]
+    }
+
     loadAccountCard(parent) {
 
         // Generate ids
@@ -69,12 +86,34 @@ class IncludeLoader {
         ]
     }
 
-    loadFileCard(parent) {
+    loadFileCard(parent, name, extension, size) {
 
+        // Generate ids
+        let id_card = this.randomIdGenerator();
+        let id_download = this.randomIdGenerator();
+
+        // Load and include
+        parent.insertAdjacentHTML('beforeend', fileCard(id_card, id_download, name, extension, size));
+
+        // Return DOM elements
+        return [
+            document.getElementById(id_card),
+            document.getElementById(id_download)
+        ]
     }
 
-    loadFolderCard(parent) {
+    loadFolderCard(parent, name) {
 
+        // Generate ids
+        let id_card = this.randomIdGenerator();
+
+        // Load and include
+        parent.insertAdjacentHTML('beforeend', folderCard(id_card, name));
+
+        // Return DOM elements
+        return [
+            document.getElementById(id_card),
+        ]
     }
 }
 
