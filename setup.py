@@ -1,5 +1,5 @@
 
-# Build with `python -m build`
+# Build with `python setup.py sdist`
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 from glob import glob
@@ -15,13 +15,12 @@ with open("requirements.txt") as f:
 
 # Create data files list
 data_files = []
-for ext in ("*.html", "*.css", "*.svg", "*.js", "*.eot", "*.ttf", "*.woff", "*.woff2"):
+for ext in ("*.html", "*.css", "*.svg", "*.png", "*.js", "*.eot", "*.ttf", "*.woff", "*.woff2", "*.sh", "*.desktop"):
     data_files.extend(glob(f"backdriveb2/**/{ext}", recursive=True))
-
 
 setup(
     name="BackDrive B2",
-    version="0.1.23",
+    version="0.1.31",
     author="Joffrey Bienvenu",
     author_email="joffreybvn@gmail.com",
     description="Cross-platform user-friendly client for BackBlaze B2",
@@ -36,7 +35,6 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    scripts=["start.sh"],
     packages=find_packages(include=["backdriveb2", "backdriveb2.*"]),
     data_files=[(".", data_files)],
     include_package_data=True,

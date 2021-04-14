@@ -13,12 +13,13 @@
 
 ## Install
 
-    sudo snap install ungoogled-chromium --edge
+### Linux
+```shell
+sudo snap install backdriveb2 --edge
+```
 
-
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/ungoogled-chromium)
-
-([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
+### Windows and MacOS
+Coming soon !
 
 ## Remaining tasks
 

@@ -1,5 +1,5 @@
 pywebview==3.4
 b2sdk==1.6.0
 wcmatch==8.1.2
-pyqt5==5.15.4
-pyqtwebengine==5.15.4
+gobject==0.1.0
+PyGObject==3.40.1

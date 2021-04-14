@@ -1,29 +1,45 @@
 name: backdriveb2
-version: 0.1.12
+version: 0.1.31
 base: core18
 
 summary: Cross-platform user-friendly client for BackBlaze B2 storage
 description: |
   BackDrive B2 is a cross-platform user-friendly client for BackBlaze B2 storage.
 
-confinement: devmode
+confinement: strict
 grade: stable
 
 architectures:
   - build-on: amd64
 
 parts:
-  backdriveb2:
-    plugin: python
-    source: https://github.com/Joffreybvn/backdriveb2.git
 
-  launcher:
-    plugin: nil
-    source: https://github.com/Joffreybvn/backdriveb2.git
+  backdriveb2:
+    plugin: dump
+    source: ./BackDrive B2-0.1.31.tar.gz
     override-build: |
-      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
-      cp -av start.sh $SNAPCRAFT_PART_INSTALL/bin/
+      snapcraftctl build
+      chmod +x backdriveb2/start_snapcraft.sh
+
+  python-dependencies:
+    plugin: python
+    python-packages:
+      - pywebview==3.4
+      - b2sdk==1.6.0
+      - wcmatch==8.1.2
+      - gobject==0.1.0
+      - PyGObject==3.40.1
 
 apps:
   backdriveb2:
-    command: bin/start.sh
+    extensions: [gnome-3-34]
+    command: backdriveb2/start_snapcraft.sh
+    desktop: backdriveb2/backdriveb2.desktop
+    plugs:
+      # Interfaces:
+      - opengl
+      - desktop
+      - desktop-legacy
+      - wayland
+      - x11
+      - unity7

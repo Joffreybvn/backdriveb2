@@ -15,7 +15,7 @@ class Application:
         self.api.set_window(window)
 
         # Start the app
-        webview.start(debug=True)
+        webview.start(gui="gtk", debug=True)
 
 
 if __name__ == '__main__':

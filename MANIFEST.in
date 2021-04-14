@@ -1,0 +1,4 @@
+# Excludes elements from setup.py build
+
+exclude node_modules/**
+exclude docs/**
