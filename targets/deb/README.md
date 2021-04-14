@@ -12,3 +12,7 @@ sudo gem install --no-ri --no-rdoc fpm
 ### Build
 1. Go to the project's root directory
 2. `fpm -s python -t deb .`
+
+### Package check
+
+dpkg -I package.deb
