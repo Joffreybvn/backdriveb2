@@ -15,7 +15,14 @@ architectures:
 parts:
   backdriveb2:
     plugin: python
-    source: ../../
+    source: https://github.com/Joffreybvn/backdriveb2.git
+
+  launcher:
+    plugin: nil
+    source: https://github.com/Joffreybvn/backdriveb2.git
+    override-build: |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      cp -av start.sh $SNAPCRAFT_PART_INSTALL/bin/
 
 apps:
   backdriveb2:
