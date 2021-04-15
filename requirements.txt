@@ -7,4 +7,4 @@ gobject==0.1.0
 PyGObject==3.40.1
 
 # Windows renderer
-cefpython3
+cefpython3==66.1

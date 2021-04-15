@@ -4,6 +4,7 @@
 from setuptools import setup, find_packages
 import sys
 from glob import glob
+import py2exe
 platform = "unknown"
 
 
@@ -28,13 +29,13 @@ install_requires = [
 if sys.platform == "win32" or sys.platform == "cygwin":
     platform = "windows"
     install_requires += [
-        "cefpython3"
+        "cefpython3==66.1"
     ]
 
 elif sys.platform == "linux":
     platform = "linux"
     install_requires += [
-        "cefpython3==66.1",
+        "gobject==0.1.0",
         "PyGObject==3.40.1"
     ]
 
@@ -48,6 +49,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Joffreybvn/backdriveb2",
+    license="MIT",
     project_urls={
         "Bug Tracker": "https://github.com/Joffreybvn/backdriveb2/issues",
     },
@@ -60,5 +62,14 @@ setup(
     data_files=[(".", data_files)],
     include_package_data=True,
     python_requires=">=3.6",
-    install_requires=install_requires
+    install_requires=install_requires,
+
+    # Py2EXE windows export
+    console=['./backdriveb2/main.py'],
+    options={
+        "py2exe": {
+            "optimize": 2,
+            "includes": ["backdriveb2.api"] # List of all the modules you want to import
+        }
+    }
 )

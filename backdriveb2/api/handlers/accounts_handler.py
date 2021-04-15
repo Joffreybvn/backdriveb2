@@ -3,7 +3,7 @@ from b2sdk.v1 import Bucket as B2Bucket
 import uuid
 import json
 from typing import List, Dict, Tuple
-from . import Account
+from ..objects import Account
 
 
 class AccountsHandler:

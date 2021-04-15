@@ -1,7 +1,7 @@
 
 from b2sdk.v1 import Bucket as B2Bucket
 from typing import List, Dict
-from . import Bucket
+from ..objects import Bucket
 
 
 class BucketsHandler:
