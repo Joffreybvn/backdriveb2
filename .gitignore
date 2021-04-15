@@ -594,3 +594,5 @@ cython_debug/
 
 /backdriveb2/frontend/js/bundle.js
 /build/
+/.python-version
+/package-lock.json

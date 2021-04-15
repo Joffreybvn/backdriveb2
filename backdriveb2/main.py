@@ -27,8 +27,8 @@ class Application:
         platforms = {
             'linux': 'gtk',
             # 'darwin': 'OS X',
-            # 'win32': 'Windows',
-            # 'cygwin': 'Windows'
+            'win32': 'cef',
+            'cygwin': 'cef'
         }
 
         if sys.platform not in platforms:

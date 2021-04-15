@@ -1,4 +1,5 @@
 
+let hasApplicationStarted = false;
 import { AccountsTab } from "./tabs/accounts.mjs";
 import { BucketTab } from "./tabs/bucket/bucket.mjs";
 import { SettingsTab } from "./tabs/settings.mjs";
@@ -62,5 +63,10 @@ class Application {
 
 // Start the app
 window.addEventListener('pywebviewready', async () => {
-    await new Application().start()
+
+    if (!hasApplicationStarted) {
+        hasApplicationStarted = true
+
+        await new Application().start()
+    }
 })

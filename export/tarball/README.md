@@ -10,4 +10,4 @@ Run the following command:
 python setup.py sdist --dist-dir ./export/tarball
 ```
 
-The tarball will be created under "**./export/tarball**".
+A tar.gz file will be created under "**./export/tarball**" for **your specific platform**.
