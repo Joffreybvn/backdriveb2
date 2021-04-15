@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 "$SNAP/backdriveb2/backdriveb2.py"
+python3 "$SNAP/backdriveb2/main.py"

@@ -19,7 +19,7 @@ for ext in ("*.html", "*.css", "*.svg", "*.png", "*.js", "*.eot", "*.ttf", "*.wo
     data_files.extend(glob(f"backdriveb2/**/{ext}", recursive=True))
 
 setup(
-    name="BackDrive B2",
+    name="backdriveb2",
     version="0.1.31",
     author="Joffrey Bienvenu",
     author_email="joffreybvn@gmail.com",

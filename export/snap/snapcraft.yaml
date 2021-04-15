@@ -16,7 +16,7 @@ parts:
 
   backdriveb2:
     plugin: dump
-    source: ./BackDrive B2-0.1.31.tar.gz
+    source: ./backdriveb2-0.1.31.tar.gz
     override-build: |
       snapcraftctl build
       chmod +x backdriveb2/start_snapcraft.sh
@@ -34,7 +34,7 @@ apps:
   backdriveb2:
     extensions: [gnome-3-34]
     command: backdriveb2/start_snapcraft.sh
-    desktop: backdriveb2/backdriveb2.desktop
+    desktop: backdriveb2/snapcraft.desktop
     plugs:
       # Interfaces:
       - opengl
