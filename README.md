@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./docs/images/backblaze.svg" width="256px" height="256px" alt="BackDrive B2">
+  <img src="./docs/images/backdriveb2_logo.svg" width="256px" height="256px" alt="BackDrive B2">
   <br />
   BackDrive B2
 </h1>
